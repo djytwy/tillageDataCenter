@@ -1,0 +1,21 @@
+language: node
+node_js: stable
+services:
+    - docker
+branches:
+    only:
+    - master
+before_install:
+    - git config --global user.name "djytwy"
+    - git config --global user.email "676534074@qq.com"
+install:
+    - npm install
+script:
+    - npm run build
+after_success:
+    - docker build -t djytwy/vue_server:1.0 .
+    - docker run -d -p 80:80 djytwy/vue_server:1.0
+    - docker ps -a
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+    - docker push djytwy/vue_server:1.0
+    - echo "build over"
