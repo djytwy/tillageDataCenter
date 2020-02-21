@@ -9,7 +9,7 @@ import store from './store'
 // 配合动态引入，若不需要动态引入，则babel进行配置，这里就不需要引入了
 import 'element-ui/lib/theme-chalk/index.css'
 import SvgIcon from 'components/SvgIcon' // SVG
-import '@/icons' // icon
+import '@/icons' // icon相关
 // 权限模块待用
 // import '@/utils/permission'
 
@@ -29,4 +29,10 @@ if(process.env.NODE_ENV === 'development') {
       render: h => h(App)
     }).$mount('#app')
   }) 
-}  
+} else {
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app')
+} 
