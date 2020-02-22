@@ -72,7 +72,7 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: this.measurement,
+            name: this.measurement,  // Y轴单位
             splitLine:{//去除网格线
               show:false
             },

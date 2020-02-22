@@ -33,9 +33,10 @@ export default {
       let option = {
         title: {
           text: this.title,
-          top: '5px',
-          left: '5px',
+          top: '10px',
+          left: '0px',
           textStyle: {
+            fontSize: 12,
             color: "#259ADDFF"
           }
         },

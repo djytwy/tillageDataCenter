@@ -1,5 +1,5 @@
 /* 
-  发起请求的request基类
+  发起请求的request基类,处理错误异常请求
   2020-2-14 田文杨
 */
 import axios from 'axios'
@@ -12,7 +12,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  baseURL: '',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
@@ -48,16 +48,16 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 200 && response.status !== 200) {
+    if (response.status !== 200) {
       Message({
         type: 'error',
-        message: `响应失败：${res.code || response.status}`,
+        message: `响应失败：${response.status}`,
         duration: '2000'
       })
       return Promise.reject(new Error(res.message || '网络错误,请稍后重试'))
     } else {
       // token 失效
-      if (res.data.code === 4003) {
+      if (res.code === 4003) {
         MessageBox.confirm('您已被登出，可以取消继续留在该页面，或者重新登录。', {
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',

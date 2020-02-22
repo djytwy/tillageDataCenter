@@ -103,6 +103,7 @@ export default {
   methods: {
     initEcharts() {
       var myChart = this.$echarts.init(this.$refs.echcarts)
+      let _this = this
       const option = {
         // title: {
         //   subtext: this.unit,
@@ -114,6 +115,22 @@ export default {
           data: this.legend,
           textStyle: {
             color: 'rgba(124, 161, 210, 1)'
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+          formatter: function(params) {
+            let val = params[0].value;
+            let index = params[0].dataIndex;
+            var htmlStr = "<div>";
+            htmlStr += _this.xAxis[index] + ": " + "<br/>"
+            htmlStr += "<div style='width:10px;height:10px;border-radius:50%;background: #0089ff;display:inline-block;margin-right:5px;'></div>"
+            htmlStr += val + " " + _this.unitLeft;
+            htmlStr += "</div>";
+            return htmlStr;
           }
         },
         // 图表边距
@@ -140,7 +157,10 @@ export default {
             lineStyle: {
               color: 'rgba(43, 73, 110, 1)'
             }
-          } 
+          },
+          axisTick: {
+            show: false
+          }, 
         } : [{
             type: 'value',
             name: this.unitLeft,
@@ -151,6 +171,9 @@ export default {
               lineStyle: {
                 color: 'rgba(43, 73, 110, 1)'
               }
+            },
+            axisTick: {
+              show: false
             } 
           },{
             type: 'value',
@@ -164,6 +187,9 @@ export default {
               lineStyle: {
                 color: 'rgba(43, 73, 110, 1)'
               }
+            },
+            axisTick: {
+              show: false
             } 
           }],
         series: [
