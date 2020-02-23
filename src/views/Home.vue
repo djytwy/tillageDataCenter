@@ -27,8 +27,13 @@ export default {
 <style lang="scss" scoped>
 .home {
   // 根据背景图的像素来定，避免白边
-  height: 816px; 
-  width: 100%;
+  // height: 816px; 
+  // width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background: url('../assets/background.png');
   .nav {
     width:100%;

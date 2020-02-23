@@ -33,7 +33,7 @@
         <!-- 框内右边的内容 -->
         <div v-if="detailTitle && detail" style="display: flex;position: absolute;right: 10px;top: 2px;">
           <div style="font-size:12px;font-family:Microsoft YaHei;font-weight:400;color:rgba(124,161,210,1);line-height:20px">{{ detailTitle }} ：</div>
-          <div style="font-size:14px;font-family:Microsoft YaHei;font-weight:bold;color:rgba(255,255,255,1);">{{ detail }}</div>
+          <div :style='"font-size:14px;font-family:Microsoft YaHei;font-weight:bold;color:"+detailColor+";"'>{{ detail }}</div>
         </div>
       </div>
       <!-- slot用于外部使用的时候 -->
@@ -66,6 +66,10 @@ export default {
     detail: {
       type: String,
       default: ''
+    },
+    detailColor:{
+      type:String,
+      default:'rgba(255,255,255,1)'
     }
   },
   computed: {
