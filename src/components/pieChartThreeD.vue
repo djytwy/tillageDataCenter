@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import HighCharts from 'highcharts'
+import HighCharts from "highcharts";
 export default {
   /*
     colors :  Array  环形各区域颜色 ['rgba(221,130,22,1)']  
@@ -28,32 +28,43 @@ export default {
   mounted() {
     this.setHichart();
   },
+  props:{
+    title:{
+      type:String,
+      default:''
+    }
+  },
 
   methods: {
     setHichart() {
       HighCharts.chart("container", {
+        credits: {
+          enabled: false
+        },
         chart: {
           type: "pie",
+			    marginRight: 120,
+          backgroundColor: "rgba(255, 255, 255, 0)",
           options3d: {
             enabled: true,
-            alpha: 50,         //图表视图旋转角度
-            beta: 0,          //图表视图旋转角度
-          }
+            alpha: 50, //图表视图旋转角度
+            beta: 0 //图表视图旋转角度
+          },
         },
-        colors: ['rgba(249,215,70,1)',
-                'rgba(0,251,236,1)',
-                'rgba(0,200,251,1)'
-                ],
+        colors: [
+          "rgba(249,215,70,1)",
+          "rgba(0,251,236,1)",
+          "rgba(0,200,251,1)"
+        ],
         // colors: this.colors,
-        showInLegend: true,//显示图例
+        showInLegend: true, //显示图例
         title: {
-          text: "月每房间工单数",
-          // text: this.title,
-          align: 'left',
-          verticalAlign: 'top',
-          style:{
-             fontSize: '12px',
-             color: 'rgba(37,154,221,1)',
+          text: this.title,
+          align: "left",
+          verticalAlign: "top",
+          style: {
+            fontSize: "12px",
+            color: "rgba(37,154,221,1)"
           }
         },
         // legend:{
@@ -64,21 +75,28 @@ export default {
         //   y: 20,
         //   floating: true,
         //   borderWidth: 5,
-        //   useHTML:true  
+        //   useHTML:true
         // },
+        legend: {
+          align: 'right',
+          verticalAlign: 'top',
+          x: 0,
+          y: 10
+        },
         plotOptions: {
           pie: {
             allowPointSelect: false,
-            cursor: 'pointer',
+            cursor: "pointer",
             innerSize: 0,
             depth: 20,
-            dataLabels:{
-              enabled:false,
-              format: '<span style="font-size:12px;font-weight:800;color:rgba(255,255,255,1);">{point.y}个:</span><br> <span style="font-size:12px;font-weight:800;font-family:Georgia;color:rgba(37,154,221,1);">{point.name}</span>'
+            dataLabels: {
+              enabled: false,
+              format:
+                '<span style="font-size:12px;font-weight:800;color:rgba(255,255,255,1);">{point.y}个:</span><br> <span style="font-size:12px;font-weight:800;font-family:Georgia;color:rgba(37,154,221,1);">{point.name}</span>'
             },
             states: {
               inactive: {
-                  opacity: 1
+                opacity: 1
               }
             },
             point: {
@@ -87,13 +105,13 @@ export default {
                   console.log(this);
                   this.update({
                     sliced: true
-                  })
+                  });
                 },
                 mouseOut: function() {
                   console.log(this);
                   this.update({
                     sliced: false
-                  })
+                  });
                 }
               }
             }
@@ -102,7 +120,7 @@ export default {
         series: [
           {
             name: "数量",
-            size:'115',
+            y: 12.8,
             data: [
               ["0-10单", 3],
               ["11-20单", 11],
@@ -116,7 +134,7 @@ export default {
   }
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .annularDiagramBox {
   width: 460px;
   height: 180px;

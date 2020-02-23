@@ -4,7 +4,7 @@
 -->
 <template>
   <div class="annularDiagramBox">
-    <div class="highcharts" id="container" ref="highcharts"></div>
+    <div class="highcharts" id="annularDiagramBox" ref="highcharts"></div>
   </div>
 </template>
 
@@ -31,22 +31,26 @@ export default {
 
   methods: {
     setHichart() {
-      HighCharts.chart("container", {
+      HighCharts.chart("annularDiagramBox", {
+        credits: {
+          enabled: false
+        },
         chart: {
           type: "pie",
+          backgroundColor: "rgba(255, 255, 255, 0)",
           options3d: {
             enabled: true,
-            alpha: 45
+            alpha: 65
 
           }
         },
-        // colors: ['rgba(221,130,22,1)',
-        //         'rgba(114,155,52,1)',
-        //         'rgba(94,121,239,1)',
-        //         'rgba(169,180,236,1)',
-        //         'rgba(206,177,21,1)'
-        //         ],
-        colors: this.colors,
+        colors: ['rgba(221,130,22,1)',
+                'rgba(114,155,52,1)',
+                'rgba(94,121,239,1)',
+                'rgba(169,180,236,1)',
+                'rgba(206,177,21,1)'
+                ],
+        // colors: this.colors,
         title: {
           // text: "月每房间工单数",
           text: this.title,
@@ -59,25 +63,27 @@ export default {
         },
         plotOptions: {
           pie: {
-            innerSize: 40,
+            innerSize: 100,
             depth: 10,
             dataLabels:{
               enabled:true,
-              format: '<span style="font-size:12px;font-weight:800;color:rgba(255,255,255,1);">{point.y}个:</span><br> <span style="font-size:12px;font-weight:800;font-family:Georgia;color:rgba(37,154,221,1);">{point.name}</span>'
+              backgroundColor: "rgba(255, 255, 255, 0)",
+              
+              format: '<span style="font-size:12px;font-weight:200;color:rgba(255,255,255,1);">{point.y}个:</span><br> <span style="font-size:12px;font-weight:200;font-family:Georgia;color:rgba(37,154,221,1);">{point.name}</span>'
             }
           }
         },
         series: [
           {
             name: "数量",
-            // data: [
-            //   ["0-10单", 3],
-            //   ["11-20单", 11],
-            //   ["21-30单", 2],
-            //   ["31-40单", 6],
-            //   ["41单及以上", 10]
-            // ]
-            data: this.highchartsData,
+            data: [
+              ["0-10单", 3],
+              ["11-20单", 11],
+              ["21-30单", 2],
+              ["31-40单", 6],
+              ["41单及以上", 10]
+            ]
+            // data: this.highchartsData,
           }
         ]
       });
