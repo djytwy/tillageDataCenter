@@ -33,8 +33,9 @@ export default {
         {value: 25, name: '76-100%'},
     ],
     colorData Array 扇形颜色
+    legendStyle  Object  legend 排列方式和位置  {"left":"'20'","top":"'20'","orient":"'vertical'"}
    */
-  props: ["title", "legendData", "echartsData","colorData"],
+  props: ["title", "legendData", "echartsData","colorData","legendStyle"],
   data() {
     return {
       pickerOptions: {
@@ -120,9 +121,12 @@ export default {
           }
         },
         legend: {
-          right: "20",
-          top: "center",
-          orient: "vertical",
+          // left: "20",
+          left: this.legendStyle.left,
+          // top: "center",
+          top: this.legendStyle.top,
+          // orient: "vertical",
+          orient: this.legendStyle.orient,
           // data: ['微博', '微信', '官网', '电话'],
           data: this.legendData,
           itemWidth: 8,

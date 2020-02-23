@@ -27,10 +27,12 @@
 
 <script>
 export default {
-  // title  标题
-  // legendData 菜单栏的数据['0-25%', '26-50%']
-  // echartsData 饼状图数据 [{value: 20, name: '0-25%'}],
-  // colorData  扇形颜色  [{value: 20, name: '优'}]
+  /*
+    title  标题
+    legendData 菜单栏的数据['0-25%', '26-50%']
+    echartsData 饼状图数据 [{value: 20, name: '0-25%'}],
+    colorData  扇形颜色  [{value: 20, name: '优'}]
+  */
   props: ["title", "legendData", "echartsData","colorData"],
   data() {
     return {

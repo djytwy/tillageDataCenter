@@ -118,6 +118,7 @@
               :echartData="touristPreferenceData"
               :legendData="touristLegendData"
               :colorData="touristPerferenceColor"
+              :legendStyle="touristLegendStyle"
               title="游客偏好"
             />
             <!-- 游客逗留时长 -->
@@ -291,6 +292,7 @@
             :legendData="touristLegendData"
             :colorData="touristPerferenceColor"
             title="投诉渠道分析"
+            :legendStyle="touristLegendStyle"
           />
         </div>
         <airQuality 
@@ -341,7 +343,7 @@ import rate from './components/occupancyRate'
 // 柱状图
 import customBar from '@/components/customBar'
 // 游客偏好
-import touristPreference from './components/TouristPreference'
+import touristPreference from '@/components/annular'
 // 实时视频的相关组件
 import realTimePlayer from './components/realTimeVideo'
 // 进度条组件
@@ -400,6 +402,7 @@ export default {
         { value: 5, name: "人文景观" },
         { value: 15, name: "新兴特色" }
       ],
+      touristLegendStyle: {"left":"'120'","top":"'120'","orient":"'vertical'"},
       touristLegendData: ["自然资源", "人文景观", "新兴特色"],
       touristPerferenceColor: ['rgba(68,218,240,1)','rgba(12,129,254,1)','rgba(197,153,56,1)','red'],
       // 景区酒店入住率

@@ -5,22 +5,26 @@
     nowValue：当前的值
     track：是否显示整个百分比条
     headTitle：进度条前面位置的标题文字
+		titleName：进度条上方文字的标题
     tileTitle：进度条尾部的文字
     showPercent: 是否显示进度条的百分比
   2020-2-17 田文杨
 */
 <template>
   <div class="progress-bar">
-    <div class="text-color" style="width: 65px" v-if="headTitle !== null">{{ headTitle }}</div>
-    <!-- 占位元素 -->
-    <!-- <span v-if="headTitle !== null" style="width: 0px"/> -->
-		<div :style="full">
-			<div class="progress-done" :style="progress"></div>
+		<div class="progress-bar-title" v-if="titleName">{{ titleName }}</div>
+    <div class="progress-bar-text">
+			<div class="text-color" style="width: 65px" v-if="headTitle !== null">{{ headTitle }}</div>
+			<!-- 占位元素 -->
+			<!-- <span v-if="headTitle !== null" style="width: 0px"/> -->
+			<div :style="full">
+				<div class="progress-done" :style="progress"></div>
+			</div>
+			<span class="text-color" v-if="showPercent">{{ precent }}%</span>
+			<!-- 占位元素 -->
+			<span style="width: 5px"/>
+			<span class="text-color" v-if="tileTitle !== null">{{ tileTitle }}</span>
 		</div>
-		<span class="text-color" v-if="showPercent">{{ precent }}%</span>
-    <!-- 占位元素 -->
-    <span style="width: 5px"/>
-    <span class="text-color" v-if="tileTitle !== null">{{ tileTitle }}</span>
   </div>
 </template>
 
@@ -61,7 +65,12 @@ export default {
     headTitle: {
       type: String,
       default: null
-    },
+		},
+		// 横条上方的问题标题
+		titleName: {
+			type: String,
+			default: null,
+		},
     // 尾部的标题文字
     tileTitle: {
       type: String,
@@ -99,6 +108,18 @@ export default {
 .progress-bar {
 	display: flex;
 	align-items: center;
+	flex-direction: column;
+	&-title {
+		width: 100%;
+		text-align: left;
+		padding-left: 80%;
+		font-size: 14px;
+		color: #fff;
+	}
+	&-text {
+		display: flex;
+		align-items: center;
+	}
 }
 
 .progress {

@@ -4,6 +4,10 @@
 */
 <template>
   <div class="content">
+    <div style="position:absolute">
+      <china-Map />  
+    </div>
+    
     <!-- 综合评分 -->
     <tillage-border 
       height='156' 
@@ -47,6 +51,7 @@ import tillageBorder from '@/components/tillageBorder'
 import bar from '@/components/ComprehensivesScore/index'
 import areaChart from '@/components/energyCenter/index'
 import tableBar from '@/components/UnitEnergyConsumption/index'
+import chinaMap from './components/bigMap'
 
 export default {
   name: 'tillageIntelligent',
@@ -66,6 +71,7 @@ export default {
     bar,
     areaChart,
     tableBar,
+    chinaMap
   }
 }
 </script>

@@ -7,18 +7,20 @@
     <cus-title title="实时拥挤程度"/>
     <div style="display:flex">
       
-      <div :style="customColor('comfort')"></div>
+      <div :style="customColor('comfort')">{{ comfort }}</div>
       <div :style="customBorder('comfort')">
         舒适
       </div>
 
       <div :style="customColor('crowd')">
+        {{ crowd }}
       </div>
       <div :style="customBorder('crowd')">
         拥挤
       </div>
 
       <div :style="customColor('veryCrowd')">
+        {{ veryCrowd }}
       </div>
       <div :style="customBorder('veryCrowd')">
         严重拥挤
@@ -55,7 +57,9 @@ export default {
         param === 'crowd' ? 'rgba(221,190,22,1);' : 'rgba(219,95,50,1);'
       return `width:40px;
         height:20px;
-        background:${color}`
+        background:${color};
+        line-height:20px;
+        color: white`
     },
     customBorder(param) {
       const color = param === 'comfort' ? 'rgba(15,178,208,1);margin-right:20px;' : 
